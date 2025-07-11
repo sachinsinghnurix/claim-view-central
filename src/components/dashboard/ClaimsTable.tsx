@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Eye, Edit, MoreHorizontal, AlertTriangle } from 'lucide-react';
+import { Eye, Edit, MoreHorizontal, AlertTriangle, FileText } from 'lucide-react';
 import { Claim } from './ClaimsDashboard';
 
 interface ClaimsTableProps {
