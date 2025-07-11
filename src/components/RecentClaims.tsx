@@ -55,46 +55,48 @@ const getStatusColor = (status: string) => {
 };
 
 export const RecentClaims = () => {
-  const handleCustomerClick = (customerId: string) => {
-    const url = `https://azure-claim-portal.lovable.app/claims/CLM-2024-001`;
+  const handleCustomerClick = (claimId: string) => {
+    // Convert CLM-001 format to CLM-2024-001 format for the URL
+    const formattedClaimId = claimId.replace('CLM-', 'CLM-2024-');
+    const url = `https://azure-claim-portal.lovable.app/claims/${formattedClaimId}`;
     window.open(url, '_blank');
   };
 
   return (
-    <Card>
+    <Card className="bg-card border-border">
       <CardHeader>
-        <CardTitle>Recent Claims</CardTitle>
+        <CardTitle className="text-card-foreground">Recent Claims</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead>Claim ID</TableHead>
-              <TableHead>Customer</TableHead>
-              <TableHead>Amount</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Date</TableHead>
+            <TableRow className="border-border">
+              <TableHead className="text-muted-foreground">Claim ID</TableHead>
+              <TableHead className="text-muted-foreground">Customer</TableHead>
+              <TableHead className="text-muted-foreground">Amount</TableHead>
+              <TableHead className="text-muted-foreground">Status</TableHead>
+              <TableHead className="text-muted-foreground">Date</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {mockClaims.map((claim) => (
-              <TableRow key={claim.id}>
-                <TableCell className="font-medium">{claim.id}</TableCell>
+              <TableRow key={claim.id} className="border-border hover:bg-muted/50">
+                <TableCell className="font-medium text-card-foreground">{claim.id}</TableCell>
                 <TableCell>
                   <button
                     onClick={() => handleCustomerClick(claim.id)}
-                    className="text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
+                    className="text-primary hover:text-primary/80 hover:underline cursor-pointer transition-colors"
                   >
                     {claim.customer}
                   </button>
                 </TableCell>
-                <TableCell>{claim.amount}</TableCell>
+                <TableCell className="text-card-foreground">{claim.amount}</TableCell>
                 <TableCell>
                   <Badge className={getStatusColor(claim.status)}>
                     {claim.status}
                   </Badge>
                 </TableCell>
-                <TableCell>{claim.date}</TableCell>
+                <TableCell className="text-card-foreground">{claim.date}</TableCell>
               </TableRow>
             ))}
           </TableBody>
