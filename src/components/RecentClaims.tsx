@@ -55,6 +55,11 @@ const getStatusColor = (status: string) => {
 };
 
 export const RecentClaims = () => {
+  const handleCustomerClick = (customerId: string) => {
+    const url = `https://azure-claim-portal.lovable.app/claims/CLM-2024-001`;
+    window.open(url, '_blank');
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -75,7 +80,14 @@ export const RecentClaims = () => {
             {mockClaims.map((claim) => (
               <TableRow key={claim.id}>
                 <TableCell className="font-medium">{claim.id}</TableCell>
-                <TableCell>{claim.customer}</TableCell>
+                <TableCell>
+                  <button
+                    onClick={() => handleCustomerClick(claim.id)}
+                    className="text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
+                  >
+                    {claim.customer}
+                  </button>
+                </TableCell>
                 <TableCell>{claim.amount}</TableCell>
                 <TableCell>
                   <Badge className={getStatusColor(claim.status)}>
